@@ -1,0 +1,11 @@
+<ArticleCount><%= @replys.count %></ArticleCount>
+<Articles>
+  <% @replys.each do |reply| %>
+    <item>
+      <Title><![CDATA[<%= reply[:title] %>]]></Title>
+      <Description><![CDATA[<%= reply[:desc] %>]]></Description>
+      <PicUrl><![CDATA[<%= reply[:pic_url] %>]]></PicUrl>
+      <Url><![CDATA[<%= reply[:url] %>]]></Url>
+    </item>
+  <% end %>
+</Articles>
