@@ -24,10 +24,9 @@ module WeixinMp
         end
       end
 
-      # TODO: 配置正确的实际用户
       def set_users
-        @to_user_name = "User1"
-        @from_user_name = "User2"
+        @to_user_name = params[:xml][:FromUserName]
+        @from_user_name = params[:xml][:ToUserName]
       end
 
       def method_missing(method_name, *args)
