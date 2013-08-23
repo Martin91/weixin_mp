@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A framework for integrating Wechat public platform API use Rails."
   s.description = "A framework for integrating Wechat public platform API use Rails."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.14"
