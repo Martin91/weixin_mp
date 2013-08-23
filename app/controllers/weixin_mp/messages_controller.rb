@@ -11,13 +11,13 @@ module WeixinMp
 
     # 消息处理
     def reply
-      # TODO: 根据实际需求覆盖此方法的定义
+      # 根据实际需求覆盖此方法的定义
     end
 
     private
       def validate_legality
         # TODO: read token from config file
-        token = "martin"
+        token = Rails.configuration.weixin_token
 
         unless params[:signature] == Digest::SHA1.hexdigest([token, params[:nonce], params[:timestamp]].sort.join)
           render text: "Forbidden", status: 403

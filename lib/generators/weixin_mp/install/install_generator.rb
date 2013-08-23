@@ -8,7 +8,7 @@ module WeixinMp
                   "app/controllers/weixin_mp/messages_controller_decorator.rb"
       end
 
-      def configure_application
+      def enable_decorators
         application <<-APP
 
     config.to_prepare do
@@ -18,6 +18,12 @@ module WeixinMp
       end
     end
         APP
+      end
+
+      def set_weixin_token
+        initializer 'weixin_mp.rb' do
+          "Rails.configuration.weixin_token = 'Set your token here'\n"
+        end
       end
 
       def notify_about_routes
