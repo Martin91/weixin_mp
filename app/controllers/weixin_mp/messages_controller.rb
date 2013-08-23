@@ -1,7 +1,7 @@
 module WeixinMp
   class MessagesController < ApplicationController
     skip_before_filter :verify_authenticity_token
-    before_filter :set_users
+    before_filter :set_users, :only => [:reply]
 
     # 验证消息接口
     def verify
@@ -21,6 +21,7 @@ module WeixinMp
     end
 
     private
+      # TODO: 配置正确的实际用户
       def set_users
         @to_user_name = "User1"
         @from_user_name = "User2"
