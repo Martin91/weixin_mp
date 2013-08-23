@@ -1,18 +1,12 @@
 module WeixinMp
   class MessagesController < ApplicationController
     skip_before_filter :verify_authenticity_token
+    before_filter :validate_legality
     before_filter :set_users, :only => [:reply]
 
     # 验证消息接口
     def verify
-      # TODO: read token from config file
-      token = "martin"
-
-      if params[:signature] == Digest::SHA1.hexdigest([token, params[:nonce], params[:timestamp]].sort.join)
-        render text: params[:echostr]
-      else
-        render nothing: true
-      end
+      render :text => params[:echostr]
     end
 
     # 消息处理
@@ -21,6 +15,15 @@ module WeixinMp
     end
 
     private
+      def validate_legality
+        # TODO: read token from config file
+        token = "martin"
+
+        unless params[:signature] == Digest::SHA1.hexdigest([token, params[:nonce], params[:timestamp]].sort.join)
+          render text: "Forbidden", status: 403
+        end
+      end
+
       # TODO: 配置正确的实际用户
       def set_users
         @to_user_name = "User1"
